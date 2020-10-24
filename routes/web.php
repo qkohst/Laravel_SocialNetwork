@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PostController@index')->name('home');
 Route::resource('/post', 'PostController');
 Route::resource('/profile', 'ProfileController');
 Route::post('/post/{post}/comment', 'CommentPostController@store')->name('post.comment.store');

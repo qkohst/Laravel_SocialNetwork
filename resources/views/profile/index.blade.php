@@ -7,11 +7,11 @@
         <!-- Profile Image -->
         <div class="box box-primary">
           <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="{{URL::to('/')}}/profileImage/{{$data_userLogin->profile->profile_image}}" alt="User profile picture">
 
             <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
-            <p class="text-muted text-center">Software Engineer</p>
+            <p class="text-muted text-center">Member since {{ Auth::user()->created_at }}</p>
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
@@ -46,7 +46,7 @@
             <strong><i class="fa fa-phone margin-r-5"></i> Telephone</strong>
             <p class="text-muted">{{$data_userLogin->profile->profile_phoneNumber}}</p>
             <hr>
-            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+            <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
             <p class="text-muted">{{$data_userLogin->profile->profile_address}}</p>
           </div>
           <!-- /.box-body -->
@@ -74,7 +74,7 @@
               <div class="box">
                 <div class="box-header">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="{{URL::to('/')}}/profileImage/{{$post->user->profile->profile_image}}" alt="user image">
                     <span class="username">
                       <a href="#">{{$post->user->name}}</a>
                     </span>
@@ -117,7 +117,7 @@
                 <div class="box-footer">
                   <form action="{{ route('post.comment.store', $post) }}" method="post">
                     {{csrf_field()}}
-                    <img class="img-responsive img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="Alt Text">
+                    <img class="img-responsive img-circle img-sm" src="{{URL::to('/')}}/profileImage/{{$post->user->profile->profile_image}}" alt="Alt Text">
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
                       <div class="input-group">
@@ -133,7 +133,7 @@
                   @foreach($post->commentPost()->orderByRaw('created_at DESC')->get() as $comment)
                   <div class="box-comment">
                     <!-- User image -->
-                    <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image">
+                    <img class="img-circle img-sm" src="{{URL::to('/')}}/profileImage/{{$comment->user->profile->profile_image}}" alt="User Image">
                     <div class="comment-text">
                       <span class="username">
                         {{$comment->user->name}}

@@ -7,7 +7,7 @@
       <div class="box">
         <div class="box-header border-transparent">
           <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+            <img class="img-circle img-bordered-sm" src="{{URL::to('/')}}/profileImage/{{Auth::user()->profile->profile_image}}" alt="user image">
             <span class="username">
               <a>Edit Your Post</a>
             </span>

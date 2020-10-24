@@ -8,7 +8,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Null_;
+
 
 class ProfileController extends Controller
 {
@@ -25,13 +25,6 @@ class ProfileController extends Controller
     {
         $data_userLogin = User::find(Auth::id());
         $my_post = Post::where('user_id', Auth::id())->get();
-        // create profile with null edentity 
-        $id_profile = Profile::where('user_id', Auth::id())->first();
-        if (empty($id_profile)) {
-            $profile = new Profile();
-            $profile->user_id     = Auth::id();
-            $profile->save();
-        }
         return view('profile.index', compact('data_userLogin', 'my_post'));
     }
 
@@ -98,7 +91,7 @@ class ProfileController extends Controller
         $profile->update($data_profile);
         //Untuk Update File
         if ($request->hasFile('profile_image')) {
-            $request->file('profile_image')->move('profileImage/', 'S_Masuk-' . $request->file('profile_image')->getClientOriginalName());
+            $request->file('profile_image')->move('profileImage/', 'pImage-' . $request->file('profile_image')->getClientOriginalName());
             $profile->profile_image = 'pImage-' . $request->file('profile_image')->getClientOriginalName();
             $profile->save();
         }

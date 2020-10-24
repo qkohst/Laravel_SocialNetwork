@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,15 @@ class PostController extends Controller
 
         // rubah ke popular post 
         $latest_post = Post::orderByRaw('created_at DESC')->paginate(5);
+
+        // create profile with null edentity 
+        $id_profile = Profile::where('user_id', Auth::id())->first();
+        if (empty($id_profile)) {
+            $profile = new Profile();
+            $profile->profile_image     = 'avatar.png';
+            $profile->user_id     = Auth::id();
+            $profile->save();
+        }
 
         return view('post.index', compact('data_post', 'latest_post'));
     }
@@ -65,7 +75,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $data_post = Post::find($id);
+        // rubah ke popular post 
+        $latest_post = Post::orderByRaw('created_at DESC')->paginate(5);
+        return view('post.show', compact('data_post', 'latest_post'));
     }
 
     /**
