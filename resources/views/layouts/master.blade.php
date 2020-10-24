@@ -38,7 +38,7 @@
       <nav class="navbar navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-            <a href="../../index2.html" class="navbar-brand"><b>Social</b>Network</a>
+            <a href="/home" class="navbar-brand"><b>Social</b>Network</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
               <i class="fa fa-bars"></i>
             </button>
