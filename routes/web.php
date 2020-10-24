@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/post', 'PostController');
+Route::resource('/profile', 'ProfileController');
 Route::post('/post/{post}/comment', 'CommentPostController@store')->name('post.comment.store');
 
 Route::get('/commen/like/{id}', [

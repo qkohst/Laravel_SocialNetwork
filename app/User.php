@@ -40,7 +40,7 @@ class User extends Authenticatable
     // relationship one to one (user -> profile)
     public function profile()
     {
-        $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
     }
     // relationship one to many (user -> post)
     public function post()
