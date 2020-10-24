@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Profile;
+use App\Following;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,7 +26,10 @@ class ProfileController extends Controller
     {
         $data_userLogin = User::find(Auth::id());
         $my_post = Post::where('user_id', Auth::id())->get();
-        return view('profile.index', compact('data_userLogin', 'my_post'));
+        $count_follower = Following::where('user_id_followed', Auth::id())->count();
+        $count_following = Following::where('user_id_login', Auth::id())->count();
+        $count_posted = Post::where('user_id', Auth::id())->count();
+        return view('profile.index', compact('data_userLogin', 'my_post', 'count_follower', 'count_following', 'count_posted'));
     }
 
     /**
@@ -46,7 +50,18 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $is_followed = Following::where('user_id_login', Auth::id())->where('user_id_followed', $request->input('user_id_followed'))->first();
+        // dd($is_followed);
+        if (empty($is_followed)) {
+            Following::create([
+                'user_id_followed' => $request->input('user_id_followed'),
+                'user_id_login' => Auth::id(),
+            ]);
+            return redirect()->route('post.index')->with('success', 'You Followed Successfully');
+        } else {
+            $is_followed->delete();
+            return redirect()->route('post.index')->with('success', 'You Unfollowed Successfully');
+        }
     }
 
     /**
@@ -57,7 +72,13 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $is_followed = Following::where('user_id_login', Auth::id())->where('user_id_followed', $id)->first();
+        $data_user = User::find($id);
+        $user_post = Post::where('user_id', $id)->get();
+        $count_follower = Following::where('user_id_followed', $id)->count();
+        $count_following = Following::where('user_id_login', $id)->count();
+        $count_posted = Post::where('user_id', $id)->count();
+        return view('profile.show', compact('data_user', 'user_post', 'count_follower', 'count_following', 'count_posted', 'is_followed'));
     }
 
     /**

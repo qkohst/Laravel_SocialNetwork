@@ -15,17 +15,15 @@
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Followers</b> <a class="pull-right">1,322</a>
+                <b>Followers</b> <a class="pull-right">{{$count_follower}}</a>
               </li>
               <li class="list-group-item">
-                <b>Following</b> <a class="pull-right">543</a>
+                <b>Following</b> <a class="pull-right">{{$count_following}}</a>
               </li>
               <li class="list-group-item">
-                <b>Friends</b> <a class="pull-right">13,287</a>
+                <b>Posted</b> <a class="pull-right">{{$count_posted}}</a>
               </li>
             </ul>
-
-            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
           </div>
           <!-- /.box-body -->
         </div>
@@ -110,7 +108,7 @@
                     </p>
                     <ul class="list-inline">
                       <li><a href="{{route('post.like', ['id'=>$post->id])}}" class="link-black text-sm"><i class="fa fa-thumbs-up"></i> Like ({{DB::table('like_posts')->where('post_id', $post->id)->count()}})</a></li>
-                      <li><a class="link-black text-sm"><i class="fa fa-comment"></i> Comment ({{DB::table('comment_posts')->where('post_id', $post->id)->count()}})</a></li>
+                      <li><a href="{{route('post.show',$post->id)}}" class="link-black text-sm"><i class="fa fa-comment"></i> Comment ({{DB::table('comment_posts')->where('post_id', $post->id)->count()}})</a></li>
                     </ul>
                   </div>
                 </div>
@@ -129,27 +127,6 @@
                     </div>
                   </form>
                 </div>
-                <div class="box-footer box-comments">
-                  @foreach($post->commentPost()->orderByRaw('created_at DESC')->get() as $comment)
-                  <div class="box-comment">
-                    <!-- User image -->
-                    <img class="img-circle img-sm" src="{{URL::to('/')}}/profileImage/{{$comment->user->profile->profile_image}}" alt="User Image">
-                    <div class="comment-text">
-                      <span class="username">
-                        {{$comment->user->name}}
-                        <span class="text-muted pull-right">{{$comment->created_at->diffForHumans()}}</span>
-                      </span><!-- /.username -->
-                      {{$comment->commentPost_content}}
-                      <ul class="list-inline">
-                        <li><a href="{{route('comment.like', ['id'=>$comment->id])}}" class="link-black text-sm"><i class="fa fa-thumbs-up"></i> Like ({{DB::table('like_comment_posts')->where('commentPost_id', $comment->id)->count()}})</a></li>
-                      </ul>
-                    </div>
-                    <!-- /.comment-text -->
-                  </div>
-                  @endforeach
-                  <!-- /.box-comment -->
-                </div>
-                <!-- /.box-footer -->
               </div>
               @endforeach
               <!-- /.post -->
