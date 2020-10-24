@@ -57,10 +57,10 @@ class ProfileController extends Controller
                 'user_id_followed' => $request->input('user_id_followed'),
                 'user_id_login' => Auth::id(),
             ]);
-            return redirect()->route('post.index')->with('success', 'You Followed Successfully');
+            return back()->with('success', 'You Followed Successfully');
         } else {
             $is_followed->delete();
-            return redirect()->route('post.index')->with('success', 'You Unfollowed Successfully');
+            return back()->with('success', 'You Unfollowed Successfully');
         }
     }
 
@@ -116,7 +116,7 @@ class ProfileController extends Controller
             $profile->profile_image = 'pImage-' . $request->file('profile_image')->getClientOriginalName();
             $profile->save();
         }
-        return redirect()->route('profile.index')->with("success", "Profile Edited Successfully");
+        return back()->with("success", "Profile Edited Successfully");
     }
 
     /**

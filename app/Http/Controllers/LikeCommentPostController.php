@@ -16,10 +16,10 @@ class LikeCommentPostController extends Controller
                 'commentPost_id' => $id,
                 'user_id' => Auth::id(),
             ]);
-            return redirect()->back();
+            return back()->with('success', 'You like a comment');
         } else {
             $is_liked->delete();
-            return redirect()->back();
+            return back()->with('success', 'You unlike a comment');
         }
     }
 }

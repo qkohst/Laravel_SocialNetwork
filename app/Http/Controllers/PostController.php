@@ -65,7 +65,7 @@ class PostController extends Controller
         $post->post_image  = $imageName;
         $post->user_id     = Auth::id();
         $post->save();
-        return redirect()->route('post.index')->with("success", "Posted Successfully");
+        return back()->with("success", "Posted Successfully");
     }
 
     /**

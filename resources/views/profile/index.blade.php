@@ -53,13 +53,6 @@
       </div>
       <!-- /.col -->
       <div class="col-md-9">
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h4><i class="icon fa fa-check"></i> Alert!</h4>
-          {{session('success')}}
-        </div>
-        @endif
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#activity" data-toggle="tab">My Post</a></li>

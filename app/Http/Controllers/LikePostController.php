@@ -16,10 +16,10 @@ class LikePostController extends Controller
                 'post_id' => $id,
                 'user_id' => Auth::id(),
             ]);
-            return redirect()->route('post.index')->with('success', 'You like a post');
+            return back()->with('success', 'You like a post');
         } else {
             $is_liked->delete();
-            return redirect()->route('post.index')->with('success', 'You unlike a post');
+            return back()->with('success', 'You unlike a post');
         }
     }
 }
