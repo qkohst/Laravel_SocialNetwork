@@ -1,3 +1,20 @@
+Preview
+
+Login Page
+![1](https://user-images.githubusercontent.com/57386598/98555772-eb3d3400-22d4-11eb-9e45-80a8aa1c8d9c.png)
+
+Register Page
+![2](https://user-images.githubusercontent.com/57386598/98555779-ed06f780-22d4-11eb-8b05-d11986f4aeb4.png)
+
+Profile Page
+![3](https://user-images.githubusercontent.com/57386598/98555782-ed9f8e00-22d4-11eb-9bd7-1ed14c3e97bc.png)
+
+Home Page
+![4](https://user-images.githubusercontent.com/57386598/98555793-f001e800-22d4-11eb-96fe-7d61b5c4a596.png)
+
+Post Comment Page
+![5](https://user-images.githubusercontent.com/57386598/98555814-f55f3280-22d4-11eb-8eea-5695780855aa.png)
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
